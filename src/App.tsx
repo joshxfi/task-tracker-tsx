@@ -3,33 +3,28 @@ import React, { useState } from 'react';
 import { css, jsx, Global } from '@emotion/react';
 import { AddTask } from './components/AddTask';
 import { Tasks } from './components/Tasks';
-
-export interface TaskList {
-  id: number;
-  task: string;
-  deadline: string;
-}
+import { TaskList } from './types';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<TaskList[]>([
     {
       id: 1,
-      task: 'learn typescript',
+      title: 'learn typescript',
       deadline: '10/23/21',
     },
     {
       id: 2,
-      task: 'learn golang',
+      title: 'learn golang',
       deadline: '5/16/21',
     },
     {
       id: 3,
-      task: 'study mern',
+      title: 'study mern',
       deadline: '9/3/21',
     },
     {
       id: 4,
-      task: 'I dunno',
+      title: 'I dunno',
       deadline: '11/31/21',
     },
   ]);
@@ -38,13 +33,19 @@ const App: React.FC = () => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const addTask = (task: { title: string; deadline: Date }) => {
+    const id = Math.floor(Math.random() * 999);
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask]);
+  };
+
   return (
     <div
       css={css`
         border-radius: 16px;
         margin: 0 auto;
         width: 500px;
-        height: 90vh;
+        height: 100vh;
         margin-top: 30px;
 
         h1 {
@@ -55,7 +56,7 @@ const App: React.FC = () => {
     >
       <div>
         <h1>Task Tracker</h1>
-        <AddTask />
+        <AddTask addTask={addTask} />
       </div>
       {tasks.length ? (
         <Tasks tasks={tasks} deleteTask={deleteTask} />
@@ -79,19 +80,16 @@ const App: React.FC = () => {
           body {
             background: #1e1e1e;
             color: #e0e0e0;
+            cursor: cell;
+            overflow: hidden;
           }
 
-          ::-webkit-scrollbar-track {
-            background-color: none;
-          }
           ::-webkit-scrollbar {
-            width: 5px;
-            background-color: #4aa96c;
-            border-radius: 16px;
+            display: none;
           }
-          ::-webkit-scrollbar-thumb {
-            background-color: #4aa96c;
-            border-radius: 16px;
+
+          ::selection {
+            background: #4aa96c;
           }
         `}
       />

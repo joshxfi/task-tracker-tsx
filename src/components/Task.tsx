@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { TaskList } from '../App';
+import { TaskList } from '../types';
 import { FaTrash } from 'react-icons/fa';
 
 interface TaskProps {
@@ -15,7 +15,7 @@ export const Task: React.FC<TaskProps> = ({ task, deleteTask }) => {
       css={css`
         background: #333;
         padding: 1em;
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
         margin-bottom: 1em;
         border-radius: 8px;
@@ -46,7 +46,7 @@ export const Task: React.FC<TaskProps> = ({ task, deleteTask }) => {
       `}
     >
       <div>
-        <h2>{task.task}</h2>
+        <h2>{task.title}</h2>
         <p>{task.deadline}</p>
       </div>
       <FaTrash onClick={() => deleteTask(task.id)} />

@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
+    "@types/react-calendar": "^3.4.0",
     "react": "^17.0.0",
+    "react-calendar": "^3.4.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.2.0"
   },

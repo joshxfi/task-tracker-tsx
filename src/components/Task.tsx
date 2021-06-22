@@ -6,15 +6,16 @@ import { FaTrash } from 'react-icons/fa';
 
 interface TaskProps {
   task: TaskList;
+  deleteTask: (id: number) => void;
 }
 
-export const Task: React.FC<TaskProps> = ({ task }) => {
+export const Task: React.FC<TaskProps> = ({ task, deleteTask }) => {
   return (
     <div
       css={css`
         background: #333;
         padding: 1em;
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
         margin-bottom: 1em;
         border-radius: 8px;
@@ -23,6 +24,11 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
 
         h2 {
           font-size: 15px;
+          color: #bef0be;
+        }
+
+        p {
+          font-size: 13px;
         }
 
         svg {
@@ -34,7 +40,7 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
           cursor: pointer;
 
           &:hover {
-            color: lime;
+            color: #9fe6a0;
           }
         }
       `}
@@ -43,7 +49,7 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
         <h2>{task.task}</h2>
         <p>{task.deadline}</p>
       </div>
-      <FaTrash />
+      <FaTrash onClick={() => deleteTask(task.id)} />
     </div>
   );
 };

@@ -34,27 +34,40 @@ const App: React.FC = () => {
     },
   ]);
 
+  const deleteTask = (id: number) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div
       css={css`
-        display: grid;
-        place-items: center;
-        border: 4px solid lime;
         border-radius: 16px;
-        margin: auto;
+        margin: 0 auto;
         width: 500px;
         height: 90vh;
         margin-top: 30px;
-        overflow-y: scroll;
 
         h1 {
-          color: #e0e0e0;
+          color: #bef0be;
+          text-align: center;
         }
       `}
     >
-      <h1>Task Tracker</h1>
-      <AddTask />
-      <Tasks tasks={tasks} />
+      <div>
+        <h1>Task Tracker</h1>
+        <AddTask />
+      </div>
+      {tasks.length ? (
+        <Tasks tasks={tasks} deleteTask={deleteTask} />
+      ) : (
+        <p
+          css={css`
+            text-align: center;
+          `}
+        >
+          no tasks to show...
+        </p>
+      )}
 
       <Global
         styles={css`
@@ -68,8 +81,17 @@ const App: React.FC = () => {
             color: #e0e0e0;
           }
 
+          ::-webkit-scrollbar-track {
+            background-color: none;
+          }
           ::-webkit-scrollbar {
-            display: none;
+            width: 5px;
+            background-color: #4aa96c;
+            border-radius: 16px;
+          }
+          ::-webkit-scrollbar-thumb {
+            background-color: #4aa96c;
+            border-radius: 16px;
           }
         `}
       />

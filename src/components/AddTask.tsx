@@ -18,7 +18,7 @@ export const AddTask: React.FC<AddTaskProps> = ({}) => {
 
         input {
           outline: none;
-          border: 3px lime solid;
+          border: 3px #4aa96c solid;
           background: none;
           margin-bottom: 1em;
           border-radius: 8px;
@@ -29,7 +29,7 @@ export const AddTask: React.FC<AddTaskProps> = ({}) => {
 
         button {
           outline: none;
-          background: lime;
+          background: #4aa96c;
           border: none;
           color: #1e1e1e;
           font-weight: 500;

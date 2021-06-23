@@ -2,20 +2,21 @@
 import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { FaPlus } from 'react-icons/fa';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface AddTaskProps {
-  addTask: (task: { title: string; deadline: Date }) => void;
+  addTask: (task: { title: string; deadline: string }) => void;
 }
 
 export const AddTask: React.FC<AddTaskProps> = ({ addTask }) => {
   const [title, setTitle] = useState<string>('');
-  const [deadline, setDeadline] = useState<Date>(new Date());
-  const [showCalendar, setShowCalendar] = useState<boolean>(false);
+  const [newDeadline, setDeadline] = useState<Date>(new Date());
 
   const onSubmit = (e: any) => {
     e.preventDefault();
+
+    const deadline = newDeadline.toDateString();
 
     addTask({ title, deadline });
 
@@ -65,35 +66,14 @@ export const AddTask: React.FC<AddTaskProps> = ({ addTask }) => {
       <form spellCheck="false" onSubmit={onSubmit}>
         <input
           type="text"
-          placeholder="task"
+          placeholder="task title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <div
-          className="btn"
-          css={css`
-            width: 300px;
-            border-radius: 8px;
-            display: grid;
-            place-items: center;
-            font-size: 14px;
-            font-weight: 300;
-          `}
-          onClick={() => setShowCalendar((prevState) => !prevState)}
-        >
-          set deadline
-        </div>
-        {showCalendar && (
-          <Calendar
-            css={css`
-              width: 300px;
-              border-radius: 16px;
-              margin-bottom: 20px;
-            `}
-            onChange={setDeadline}
-            value={deadline}
-          />
-        )}
+        <DatePicker
+          selected={newDeadline}
+          onChange={(date: Date) => setDeadline(date)}
+        />
         <button type="submit" className="btn">
           Add Task <FaPlus />{' '}
         </button>

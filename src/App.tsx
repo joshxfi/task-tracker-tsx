@@ -10,22 +10,22 @@ const App: React.FC = () => {
     {
       id: 1,
       title: 'learn typescript',
-      deadline: '10/23/21',
+      deadline: 'Wed Jun 17 2021',
     },
     {
       id: 2,
       title: 'learn golang',
-      deadline: '5/16/21',
+      deadline: 'Thu Jun 20 2021',
     },
     {
       id: 3,
       title: 'study mern',
-      deadline: '9/3/21',
+      deadline: 'Tue July 17 2021',
     },
     {
       id: 4,
       title: 'I dunno',
-      deadline: '11/31/21',
+      deadline: 'Fri May 23 2021',
     },
   ]);
 
@@ -33,10 +33,11 @@ const App: React.FC = () => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const addTask = (task: { title: string; deadline: Date }) => {
+  const addTask = (task: { title: string; deadline: string }) => {
     const id = Math.floor(Math.random() * 999);
     const newTask = { id, ...task };
-    setTasks([...tasks, newTask]);
+
+    task.title.length && setTasks([...tasks, newTask]);
   };
 
   return (
@@ -80,7 +81,6 @@ const App: React.FC = () => {
           body {
             background: #1e1e1e;
             color: #e0e0e0;
-            cursor: cell;
             overflow: hidden;
           }
 

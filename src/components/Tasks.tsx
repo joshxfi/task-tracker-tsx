@@ -17,6 +17,7 @@ export const Tasks: React.FC<TasksProps> = ({ tasks, deleteTask }) => {
         margin: 0 auto;
         width: 80%;
         border-radius: 16px;
+        height: 470px;
       `}
     >
       {tasks

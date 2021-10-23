@@ -48,6 +48,8 @@ const App: React.FC = () => {
         width: 500px;
         height: 100vh;
         margin-top: 30px;
+        position: relative;
+        top: 40px;
 
         h1 {
           color: #bef0be;
